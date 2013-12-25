@@ -1,8 +1,9 @@
 Source: ruby-json
 Section: ruby
 Priority: optional
-Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
-Uploaders: Lucas Nussbaum <lucas@debian.org>, Antonio Terceiro <terceiro@softwarelivre.org>
+Maintainer: Pexip AS <packaging@pexip.com>
+XSBC-Pexip-Original-Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+XSBC-Pexip-Original-Uploaders: Lucas Nussbaum <lucas@debian.org>, Antonio Terceiro <terceiro@softwarelivre.org>
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 7.0.50~), gem2deb (>= 0.2.6~)
 Standards-Version: 3.9.2
@@ -10,6 +11,7 @@ Vcs-Git: git://git.debian.org/pkg-ruby-extras/ruby-json.git
 Vcs-Browser: http://git.debian.org/?p=pkg-ruby-extras/ruby-json.git;a=summary
 Homepage: http://flori.github.com/json
 XS-Ruby-Versions: all
+XS-Pexip-Upstream: http://archive.ubuntu.com/ubuntu/ precise
 
 Package: ruby-json
 Architecture: any

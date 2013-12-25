@@ -1,3 +1,9 @@
+ruby-json (1.6.3-1pexip1) pexip; urgency=low
+
+  * Prepare Pexip packaging
+
+ -- John-Mark Bell <jmb@pexip.com>  Wed, 25 Dec 2013 04:29:50 +0000
+
 ruby-json (1.6.3-1) unstable; urgency=low
 
   * New upstream release.
