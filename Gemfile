@@ -1,11 +1,11 @@
 # vim: set ft=ruby:
 
-source :rubygems
+source 'https://rubygems.org'
 
 gemspec :name => 'json'
 gemspec :name => 'json_pure'
 gemspec :name => 'json-java'
 
-group :development do
-  gem 'simplecov', :platform => :mri_19
-end
+gem 'utils'
+gem 'test-unit'
+gem 'debugger', :platform => :mri_19

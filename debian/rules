@@ -10,15 +10,3 @@
 
 %:
 	dh $@ --buildsystem=ruby --with ruby
-
-# hack. The source code for json extensions is in ext/json/ext/{parser,generator}/,
-# but the tests require ext/json/ext/{parser,generator}.so
-override_dh_auto_install:
-	cd ext/json/ext && \
-	ln -s parser/parser.so parser.so && \
-	ln -s generator/generator.so generator.so
-	dh_auto_install
-
-override_dh_auto_clean:
-	dh_auto_clean
-	cd ext/json/ext && rm -f parser.so generator.so
