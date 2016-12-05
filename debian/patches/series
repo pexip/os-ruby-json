@@ -1,2 +1,3 @@
 02-fix-fuzz.rb-shebang.patch
 04-fix-tests-path.patch
+0003-Remove-additional-gemspec-files.patch
