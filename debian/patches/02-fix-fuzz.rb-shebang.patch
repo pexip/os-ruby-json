@@ -1,3 +1,6 @@
+Description: Fix shebang for fuzz.rb script file
+Author: Lucas Nussbaum <lucas@debian.org>
+Last-Update: 2011-04-03
 --- a/tools/fuzz.rb
 +++ b/tools/fuzz.rb
 @@ -1,3 +1,5 @@

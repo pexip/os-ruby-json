@@ -1,3 +1,64 @@
+2013-05-13 (1.8.1)
+  * Remove Rubinius exception since transcoding should be working now.
+2013-05-13 (1.8.0)
+  * Fix https://github.com/flori/json/issues/162 reported by Marc-Andre
+    Lafortune <github_rocks@marc-andre.ca>. Thanks!
+  * Applied patches by Yui NARUSE <naruse@airemix.jp> to suppress warning with
+    -Wchar-subscripts and better validate UTF-8 strings.
+  * Applied patch by ginriki@github to remove unnecessary if.
+  * Add load/dump interface to JSON::GenericObject to make
+        serialize :some_attribute, JSON::GenericObject
+    work in Rails active models for convenient SomeModel#some_attribute.foo.bar
+    access to serialised JSON data.
+2013-02-04 (1.7.7)
+  * Security fix for JSON create_additions default value and
+    JSON::GenericObject. It should not be possible to create additions unless
+    explicitely requested by setting the create_additions argument to true or
+    using the JSON.load/dump interface. If JSON::GenericObject is supposed to
+    be automatically deserialised, this has to be explicitely enabled by
+    setting
+      JSON::GenericObject.json_creatable = true
+    as well.
+  * Remove useless assert in fbuffer implementation.
+  * Apply patch attached to https://github.com/flori/json/issues#issue/155
+    provided by John Shahid <jvshahid@gmail.com>, Thx!
+  * Add license information to rubygems spec data, reported by Jordi Massaguer Pla <jmassaguerpla@suse.de>.
+  * Improve documentation, thx to Zachary Scott <zachary@zacharyscott.net>.
+2012-11-29 (1.7.6)
+  * Add GeneratorState#merge alias for JRuby, fix state accessor methods. Thx to
+   jvshahid@github.
+  * Increase hash likeness of state objects.
+2012-08-17 (1.7.5)
+  * Fix compilation of extension on older rubies.
+2012-07-26 (1.7.4)
+  * Fix compilation problem on AIX, see https://github.com/flori/json/issues/142
+2012-05-12 (1.7.3)
+  * Work around Rubinius encoding issues using iconv for conversion instead.
+2012-05-11 (1.7.2)
+  * Fix some encoding issues, that cause problems for  the pure and the
+    extension variant in jruby 1.9 mode.
+2012-04-28 (1.7.1)
+  * Some small fixes for building
+2012-04-28 (1.7.0)
+  * Add JSON::GenericObject for method access to objects transmitted via JSON.
+2012-04-27 (1.6.7)
+  * Fix possible crash when trying to parse nil value.
+2012-02-11 (1.6.6)
+  * Propagate src encoding to values made from it (fixes 1.9 mode converting
+    everything to ascii-8bit; harmless for 1.8 mode too) (Thomas E. Enebo
+    <tom.enebo@gmail.com>), should fix
+    https://github.com/flori/json/issues#issue/119.
+  * Fix https://github.com/flori/json/issues#issue/124 Thx to Jason Hutchens.
+  * Fix https://github.com/flori/json/issues#issue/117
+2012-01-15 (1.6.5)
+  * Vit Ondruch <v.ondruch@tiscali.cz> reported a bug that shows up when using
+    optimisation under GCC 4.7. Thx to him, Bohuslav Kabrda
+    <bkabrda@redhat.com> and Yui NARUSE <naruse@airemix.jp> for debugging and
+    developing a patch fix.
+2011-12-24 (1.6.4)
+  * Patches that improve speed on JRuby contributed by Charles Oliver Nutter
+    <headius@headius.com>.
+  * Support object_class/array_class with duck typed hash/array.
 2011-12-01 (1.6.3)
   * Let JSON.load('') return nil as well to make mysql text columns (default to
     '') work better for serialization.

@@ -1,3 +1,64 @@
+ruby-json (1.8.1-1pexip1) pexip; urgency=low
+
+  * Migrate to Jessie
+
+ -- John-Mark Bell <jmb@pexip.com>  Fri, 24 Mar 2017 14:13:29 +0000
+
+ruby-json (1.8.1-1) unstable; urgency=low
+
+  * Team upload
+  * New upstream release
+  * Bump standards version to 3.9.5 (no changes)
+  * Bump gem2deb build dep to 0.7.4~
+    - drop ruby1.8, ruby1.9.1 and add ruby2.0, ruby 2.1
+
+ -- Pirate Praveen <praveen@debian.org>  Fri, 04 Apr 2014 15:23:28 +0530
+
+ruby-json (1.8.0-1) unstable; urgency=low
+
+  * New upstream version
+  * debian/control: 
+    + remove obsolete DM-Upload-Allowed flag
+    + use canonical URI in Vcs-* fields
+    + bump Standards-Version to 3.9.4 (no changes needed)
+    + update my email address
+    + drop transitional packages, not needed anymore
+  * debian/patches: drop 10-fix-CVE-2013-0269.patch, included upstream
+  * remove debian/source/lintian-overrides, related to dropped transitional
+    packages
+
+ -- Cédric Boutillier <boutil@debian.org>  Tue, 14 May 2013 19:10:26 +0200
+
+ruby-json (1.7.3-3) unstable; urgency=high
+
+  * set urgency to high, as a security bug is fixed.
+  * Add 10-fix-CVE-2013-0269.patch, adapted from upstream to fix denial of
+    service and unsafe object creation vulnerability.
+    [CVE-2013-0269] (Closes: #700436).
+
+ -- Cédric Boutillier <cedric.boutillier@gmail.com>  Tue, 12 Feb 2013 23:14:48 +0100
+
+ruby-json (1.7.3-2) unstable; urgency=low
+
+  * Bump build dependency on gem2deb to >= 0.3.0~
+
+ -- Cédric Boutillier <cedric.boutillier@gmail.com>  Tue, 26 Jun 2012 13:02:05 +0200
+
+ruby-json (1.7.3-1) unstable; urgency=low
+
+  * New upstream release. All the tests are passing (Closes: #673661)
+  * Add myself to Uploaders:
+  * Bump Standards-Version: to 3.9.3 (no changes needed)
+  * Add DEP-3 header to 02-fix-fuzz.rb-shebang.patch
+  * Override lintian warning about duplicate descriptions for transitional
+    packages
+  * Remove overrides in debian/rules (not needed any more)
+  * Update debian/copyright
+  * + update Format URL to match the recommended one
+    + mention the Ruby license and java/* files
+
+ -- Cédric Boutillier <cedric.boutillier@gmail.com>  Mon, 21 May 2012 22:05:17 +0200
+
 ruby-json (1.6.3-1pexip1) pexip; urgency=low
 
   * Prepare Pexip packaging

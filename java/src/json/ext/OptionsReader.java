@@ -24,13 +24,14 @@ final class OptionsReader {
     OptionsReader(ThreadContext context, IRubyObject vOpts) {
         this.context = context;
         this.runtime = context.getRuntime();
-
         if (vOpts == null || vOpts.isNil()) {
             opts = null;
         } else if (vOpts.respondsTo("to_hash")) {
             opts = vOpts.convertToHash();
-        } else {
+        } else if (vOpts.respondsTo("to_h")) {
             opts = vOpts.callMethod(context, "to_h").convertToHash();
+        } else {
+            opts = vOpts.convertToHash(); /* Should just raise the correct TypeError */
         }
     }
 
@@ -102,13 +103,7 @@ final class OptionsReader {
         IRubyObject value = get(key);
 
         if (value == null || value.isNil()) return defaultValue;
-
-        if (value instanceof RubyClass &&
-                ((RubyClass)value).getAllocator() == defaultValue.getAllocator()) {
-            return (RubyClass)value;
-        }
-        throw runtime.newTypeError(key + " option must be a subclass of "
-                                   + defaultValue);
+        return (RubyClass)value;
     }
 
     public RubyHash getHash(String key) {

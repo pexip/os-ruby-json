@@ -79,7 +79,7 @@ static VALUE CNaN, CInfinity, CMinusInfinity;
 static ID i_json_creatable_p, i_json_create, i_create_id, i_create_additions,
           i_chr, i_max_nesting, i_allow_nan, i_symbolize_names, i_quirks_mode,
           i_object_class, i_array_class, i_key_p, i_deep_const_get, i_match,
-          i_match_string, i_aset, i_leftshift;
+          i_match_string, i_aset, i_aref, i_leftshift;
 
 %%{
     machine JSON_common;
@@ -167,7 +167,12 @@ static char *JSON_parse_object(JSON_Parser *json, char *p, char *pe, VALUE *resu
 
     if (cs >= JSON_object_first_final) {
         if (json->create_additions) {
-            VALUE klassname = rb_hash_aref(*result, json->create_id);
+            VALUE klassname;
+            if (NIL_P(json->object_class)) {
+              klassname = rb_hash_aref(*result, json->create_id);
+            } else {
+              klassname = rb_funcall(*result, i_aref, 1, json->create_id);
+            }
             if (!NIL_P(klassname)) {
                 VALUE klass = rb_funcall(mJSON, i_deep_const_get, 1, klassname);
                 if (RTEST(rb_funcall(klass, i_json_creatable_p, 0))) {
@@ -400,6 +405,7 @@ static VALUE json_string_unescape(VALUE result, char *string, char *stringEnd)
 {
     char *p = string, *pe = string, *unescape;
     int unescape_len;
+    char buf[4];
 
     while (pe < stringEnd) {
         if (*pe == '\\') {
@@ -432,7 +438,6 @@ static VALUE json_string_unescape(VALUE result, char *string, char *stringEnd)
                     if (pe > stringEnd - 4) {
                         return Qnil;
                     } else {
-                        char buf[4];
                         UTF32 ch = unescape_unicode((unsigned char *) ++pe);
                         pe += 3;
                         if (UNI_SUR_HIGH_START == (ch & 0xFC00)) {
@@ -597,7 +602,7 @@ static VALUE convert_encoding(VALUE source)
  * _opts_ can have the following keys:
  * * *max_nesting*: The maximum depth of nesting allowed in the parsed data
  *   structures. Disable depth checking with :max_nesting => false|nil|0, it
- *   defaults to 19.
+ *   defaults to 100.
  * * *allow_nan*: If set to true, allow NaN, Infinity and -Infinity in
  *   defiance of RFC 4627 to be parsed by the Parser. This option defaults to
  *   false.
@@ -634,7 +639,7 @@ static VALUE cParser_initialize(int argc, VALUE *argv, VALUE self)
                     json->max_nesting = 0;
                 }
             } else {
-                json->max_nesting = 19;
+                json->max_nesting = 100;
             }
             tmp = ID2SYM(i_allow_nan);
             if (option_given_p(opts, tmp)) {
@@ -659,7 +664,7 @@ static VALUE cParser_initialize(int argc, VALUE *argv, VALUE self)
             if (option_given_p(opts, tmp)) {
                 json->create_additions = RTEST(rb_hash_aref(opts, tmp));
             } else {
-                json->create_additions = 1;
+                json->create_additions = 0;
             }
             tmp = ID2SYM(i_create_id);
             if (option_given_p(opts, tmp)) {
@@ -688,7 +693,7 @@ static VALUE cParser_initialize(int argc, VALUE *argv, VALUE self)
             }
         }
     } else {
-        json->max_nesting = 19;
+        json->max_nesting = 100;
         json->allow_nan = 0;
         json->create_additions = 1;
         json->create_id = rb_funcall(mJSON, i_create_id, 0);
@@ -700,6 +705,7 @@ static VALUE cParser_initialize(int argc, VALUE *argv, VALUE self)
       source = convert_encoding(StringValue(source));
     }
     json->current_nesting = 0;
+    StringValue(source);
     json->len = RSTRING_LEN(source);
     json->source = RSTRING_PTR(source);;
     json->Vsource = source;
@@ -896,6 +902,7 @@ void Init_parser()
     i_key_p = rb_intern("key?");
     i_deep_const_get = rb_intern("deep_const_get");
     i_aset = rb_intern("[]=");
+    i_aref = rb_intern("[]");
     i_leftshift = rb_intern("<<");
 #ifdef HAVE_RUBY_ENCODING_H
     CEncoding_UTF_8 = rb_funcall(rb_path2class("Encoding"), rb_intern("find"), 1, rb_str_new2("utf-8"));
