@@ -2,8 +2,8 @@
 #define _GENERATOR_H_
 
 #include <string.h>
-#include <assert.h>
 #include <math.h>
+#include <ctype.h>
 
 #include "ruby.h"
 
@@ -13,28 +13,15 @@
 #include "re.h"
 #endif
 
+#ifndef rb_intern_str
+#define rb_intern_str(string) SYM2ID(rb_str_intern(string))
+#endif
+
+#ifndef rb_obj_instance_variables
+#define rb_obj_instance_variables(object) rb_funcall(object, rb_intern("instance_variables"), 0)
+#endif
+
 #define option_given_p(opts, key) RTEST(rb_funcall(opts, i_key_p, 1, key))
-
-#ifndef RHASH_SIZE
-#define RHASH_SIZE(hsh) (RHASH(hsh)->tbl->num_entries)
-#endif
-
-#ifndef RFLOAT_VALUE
-#define RFLOAT_VALUE(val) (RFLOAT(val)->value)
-#endif
-
-#ifndef RARRAY_PTR
-#define RARRAY_PTR(ARRAY) RARRAY(ARRAY)->ptr
-#endif
-#ifndef RARRAY_LEN
-#define RARRAY_LEN(ARRAY) RARRAY(ARRAY)->len
-#endif
-#ifndef RSTRING_PTR
-#define RSTRING_PTR(string) RSTRING(string)->ptr
-#endif
-#ifndef RSTRING_LEN
-#define RSTRING_LEN(string) RSTRING(string)->len
-#endif
 
 /* unicode defintions */
 
