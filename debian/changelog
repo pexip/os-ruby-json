@@ -1,3 +1,9 @@
+ruby-json (1.8.1-1pexip2) pexip; urgency=low
+
+  * Backport fix for CVE-2017-14064
+
+ -- John-Mark Bell <jmb@pexip.com>  Mon, 15 Jan 2018 18:54:45 +0000
+
 ruby-json (1.8.1-1pexip1) pexip; urgency=low
 
   * Migrate to Jessie
