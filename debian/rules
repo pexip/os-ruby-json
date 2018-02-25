@@ -2,6 +2,14 @@
 
 export DH_RUBY_GEMSPEC=json.gemspec
 export GEM2DEB_TEST_RUNNER = --check-dependencies
+export LC_ALL = C.UTF-8
 
 %:
 	dh $@ --buildsystem=ruby --with ruby
+
+override_dh_auto_build:
+	dh_auto_build
+
+override_dh_auto_clean:
+	dh_auto_clean
+	-rm -r ./pkg/

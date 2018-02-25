@@ -40,6 +40,18 @@ class JSONParserTest < Test::Unit::TestCase
     assert_equal({ 'a' => 'b' }, parser.parse)
   end
 
+  def test_parse_values
+    assert_equal(nil,      parse('null'))
+    assert_equal(false,    parse('false'))
+    assert_equal(true,     parse('true'))
+    assert_equal(-23,      parse('-23'))
+    assert_equal(23,       parse('23'))
+    assert_in_delta(0.23,  parse('0.23'), 1e-2)
+    assert_in_delta(0.0,   parse('0e0'), 1e-2)
+    assert_equal("",       parse('""'))
+    assert_equal("foobar", parse('"foobar"'))
+  end
+
   def test_parse_simple_arrays
     assert_equal([],             parse('[]'))
     assert_equal([],             parse('  [  ] '))
@@ -94,6 +106,11 @@ class JSONParserTest < Test::Unit::TestCase
     assert_equal 1.0/0, parse('Infinity', :allow_nan => true)
     assert_raise(ParserError) { parse('-Infinity') }
     assert_equal -1.0/0, parse('-Infinity', :allow_nan => true)
+  end
+
+  def test_parse_bigdecimals
+    assert_equal(BigDecimal,                                 JSON.parse('{"foo": 9.01234567890123456789}', decimal_class: BigDecimal)["foo"].class)
+    assert_equal(BigDecimal.new("0.901234567890123456789E1"),JSON.parse('{"foo": 9.01234567890123456789}', decimal_class: BigDecimal)["foo"]      )
   end
 
   if Array.method_defined?(:permutation)
@@ -277,7 +294,6 @@ EOT
     assert_equal data, parse(json)
   end
 
-
   class SubArray < Array
     def <<(v)
       @shifted = true
@@ -436,6 +452,13 @@ EOT
     assert_kind_of Hash, obj_again['foo']
     assert obj_again['foo']['bar']
     assert_equal obj, obj_again
+  end
+
+  def test_parsing_frozen_ascii8bit_string
+    assert_equal(
+      { 'foo' => 'bar' },
+      JSON('{ "foo": "bar" }'.force_encoding(Encoding::ASCII_8BIT).freeze)
+    )
   end
 
   private

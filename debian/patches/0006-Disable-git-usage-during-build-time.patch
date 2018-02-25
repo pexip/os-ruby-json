@@ -1,0 +1,16 @@
+Description: Remove unnecessary git usage during package build time
+Author: Miguel Landaeta <nomadium@debian.org>
+Forwarded: no
+Last-Update: 2017-03-14
+
+--- ruby-json-2.0.1+dfsg.orig/Rakefile
++++ ruby-json-2.0.1+dfsg/Rakefile
+@@ -28,7 +28,7 @@ BUNDLE = ENV['BUNDLE'] || %w[bundle].fin
+ PKG_NAME          = 'json'
+ PKG_TITLE         = 'JSON Implementation for Ruby'
+ PKG_VERSION       = File.read('VERSION').chomp
+-PKG_FILES         = FileList[`git ls-files`.split(/\n/)]
++PKG_FILES         = FileList[Dir.glob(File.join("**", "*"))]
+ 
+ EXT_ROOT_DIR      = 'ext/json/ext'
+ EXT_PARSER_DIR    = "#{EXT_ROOT_DIR}/parser"
