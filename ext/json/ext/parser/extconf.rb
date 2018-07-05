@@ -1,13 +1,6 @@
+# frozen_string_literal: false
 require 'mkmf'
 
-unless $CFLAGS.gsub!(/ -O[\dsz]?/, ' -O3')
-  $CFLAGS << ' -O3'
-end
-if CONFIG['CC'] =~ /gcc/
-  $CFLAGS << ' -Wall'
-  if $DEBUG && !$CFLAGS.gsub!(/ -O[\dsz]?/, ' -O0 -ggdb')
-    $CFLAGS << ' -O0 -ggdb'
-  end
-end
+have_func("rb_enc_raise", "ruby.h")
 
 create_makefile 'json/ext/parser'
