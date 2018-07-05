@@ -10,7 +10,7 @@ Vcs-Git: git://anonscm.debian.org/pkg-ruby-extras/ruby-json.git
 Vcs-Browser: http://anonscm.debian.org/gitweb?p=pkg-ruby-extras/ruby-json.git;a=summary
 Homepage: http://flori.github.com/json
 XS-Ruby-Versions: all
-XS-Pexip-Upstream: http://ftp.debian.org/debian/ jessie
+XS-Pexip-Upstream: http://ftp.debian.org/debian/ stretch
 
 Package: ruby-json
 Architecture: any
