@@ -8,4 +8,4 @@ Last-Update: 2011-04-03
 +
  require 'json'
  
- require 'iconv'
+ class Fuzzer

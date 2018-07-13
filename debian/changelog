@@ -1,3 +1,78 @@
+ruby-json (2.0.1+dfsg-3pexip1) pexip; urgency=medium
+
+  * Migrate to Stretch
+
+ -- John-Mark Bell <jmb@pexip.com>  Fri, 13 Jul 2018 19:21:51 +0100
+
+ruby-json (2.0.1+dfsg-3) unstable; urgency=medium
+
+  * Add Conflicts: ruby-json-pure (Closes: #847141)
+
+ -- Micah Anderson <micah@debian.org>  Mon, 05 Dec 2016 18:33:24 -0500
+
+ruby-json (2.0.1+dfsg-2) unstable; urgency=medium
+
+  * Add patch debian/patches/0003-Remove-additional-gemspec-files.patch to
+    fix test failures on ci.d.n.
+
+ -- Lucas Nussbaum <lucas@debian.org>  Wed, 27 Jul 2016 17:04:21 +0200
+
+ruby-json (2.0.1+dfsg-1) unstable; urgency=medium
+
+  [ Cédric Boutillier ]
+  * Bump debhelper compatibility level to 9
+  * Remove version in the gem2deb build-dependency
+  * Use https:// in Vcs-* fields
+  * Use https:// in Vcs-* fields
+  * Bump Standards-Version to 3.9.7 (no changes needed)
+  * Run wrap-and-sort on packaging files
+
+  [ Lucas Nussbaum ]
+  * Repack tarball for 2.0.1 to avoid non-DFSG RFC
+  * Imported Upstream version 2.0.1+dfsg
+  * Update debian/rules with a fresh dh-make-ruby run
+  * Bump Standards-Version to 3.9.8. No changes needed.
+  * Update patches
+  * Fix names of READMEs
+  * point to correct gemspec
+  * Fix loading of tests
+
+ -- Lucas Nussbaum <lucas@debian.org>  Thu, 21 Jul 2016 23:23:22 +0200
+
+ruby-json (1.8.3-1) unstable; urgency=medium
+
+  * Imported Upstream version 1.8.3
+
+ -- Cédric Boutillier <boutil@debian.org>  Sun, 21 Jun 2015 07:32:32 +0200
+
+ruby-json (1.8.2-1) unstable; urgency=medium
+
+  * Team upload.
+  * Re-upload to unstable.
+
+ -- Pirate Praveen <praveen@debian.org>  Wed, 29 Apr 2015 18:19:17 +0530
+
+ruby-json (1.8.2-1~exp2) experimental; urgency=medium
+
+  * Team upload.
+  * Add Build-Depends on ruby-test-unit for ruby2.2.
+
+ -- Christian Hofstaedtler <zeha@debian.org>  Thu, 09 Apr 2015 15:32:50 +0200
+
+ruby-json (1.8.2-1~exp1) experimental; urgency=medium
+
+  [ Sebastien Badia ]
+  * Team upload.
+  * New upstream release (fixes ruby2.2 build failure)
+  * d/control:
+    - Bump Standards-Versions (no changes)
+    - Use cgit for VCS-Browser fields (and switch to HTTPS)
+
+  [ Christian Hofstaedtler ]
+  * Target experimental while testing is frozen.
+
+ -- Christian Hofstaedtler <zeha@debian.org>  Thu, 09 Apr 2015 15:12:03 +0200
+
 ruby-json (1.8.1-1pexip2) pexip; urgency=low
 
   * Backport fix for CVE-2017-14064
