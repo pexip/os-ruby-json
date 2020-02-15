@@ -1,7 +1,24 @@
 # Changes
 
+## 2017-04-18 (2.1.0)
+ * Allow passing of `decimal_class` option to specify a class as which to parse
+   JSON float numbers.
+## 2017-03-23 (2.0.4)
+ * Raise exception for incomplete unicode surrogates/character escape
+   sequences. This problem was reported by Daniel Gollahon (dgollahon).
+ * Fix arbitrary heap exposure problem. This problem was reported by Ahmad
+   Sherif (ahmadsherif).
+
+## 2017-01-12 (2.0.3)
+ * Set `required_ruby_version` to 1.9
+ * Some small fixes
+
+## 2016-07-26 (2.0.2)
+  * Specify `required_ruby_version` for json\_pure.
+  * Fix issue #295 failure when parsing frozen strings.
+
 ## 2016-07-01 (2.0.1)
-  * Fix problem when requiring json\_pure and Parser constant was defiend top
+  * Fix problem when requiring json\_pure and Parser constant was defined top
     level.
   * Add `RB_GC_GUARD` to avoid possible GC problem via Pete Johns.
   * Store `current_nesting` on stack by Aaron Patterson.
@@ -28,7 +45,7 @@
     `JSON.dump_default_options`.
   * More tests by Michael Mac-Vicar <mmacvicar@gmail.com> and fixing
     `space_before` accessor in generator.
-  * Performance on Jruby improvemed by Ben Browning <bbrownin@redhat.com>.
+  * Performance on Jruby improved by Ben Browning <bbrownin@redhat.com>.
   * Some fixes to be compatible with the new Ruby 2.2 by Zachary Scott <e@zzak.io>
     and SHIBATA Hiroshi <hsbt@ruby-lang.org>.
 

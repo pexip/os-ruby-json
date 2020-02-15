@@ -95,6 +95,7 @@ if defined?(Gem) and defined?(Gem::PackageTask)
     s.email = "flori@ping.de"
     s.homepage = "http://flori.github.com/#{PKG_NAME}"
     s.license = 'Ruby'
+    s.required_ruby_version = '>= 1.9'
   end
 
   desc 'Creates a json_pure.gemspec file'
@@ -132,7 +133,7 @@ if defined?(Gem) and defined?(Gem::PackageTask)
     s.email = "flori@ping.de"
     s.homepage = "http://flori.github.com/#{PKG_NAME}"
     s.license = 'Ruby'
-    s.required_ruby_version = '~> 2.0'
+    s.required_ruby_version = '>= 1.9'
   end
 
   desc 'Creates a json.gemspec file'
@@ -199,13 +200,11 @@ namespace :gems do
 end
 
 if defined?(RUBY_ENGINE) and RUBY_ENGINE == 'jruby'
-  if ENV.key?('JAVA_HOME')
-    warn " *** JAVA_HOME was set to #{ENV['JAVA_HOME'].inspect}"
-  elsif File.directory?(local_java = '/usr/local/java/jdk') ||
-    File.directory?(local_java = '/usr/lib/jvm/java-6-openjdk')
-  then
-    ENV['JAVA_HOME'] = local_java
-  end
+  ENV['JAVA_HOME'] ||= [
+    '/usr/local/java/jdk',
+    '/usr/lib/jvm/java-6-openjdk',
+    '/Library/Java/Home',
+  ].find { |c| File.directory?(c) }
   if ENV['JAVA_HOME']
     warn " *** JAVA_HOME is set to #{ENV['JAVA_HOME'].inspect}"
     ENV['PATH'] = ENV['PATH'].split(/:/).unshift(java_path = "#{ENV['JAVA_HOME']}/bin") * ':'
@@ -258,7 +257,7 @@ if defined?(RUBY_ENGINE) and RUBY_ENGINE == 'jruby'
   end
 
   desc "Testing library (jruby)"
-  task :test_ext => [ :create_jar, :check_env, :do_test_ext ]
+  task :test_ext => [ :check_env, :create_jar, :do_test_ext ]
 
   UndocumentedTestTask.new do |t|
     t.name = 'do_test_ext'
@@ -332,7 +331,7 @@ else
   end
 
   desc "Testing library (extension)"
-  task :test_ext => [ :compile, :check_env, :do_test_ext ]
+  task :test_ext => [ :check_env, :compile, :do_test_ext ]
 
   UndocumentedTestTask.new do |t|
     t.name = 'do_test_ext'
