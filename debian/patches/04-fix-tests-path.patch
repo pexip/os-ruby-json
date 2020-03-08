@@ -3,10 +3,11 @@ Description: Let debian/ruby-tests.rb handle the test suite loading
 Origin: vendor
 Author: Lucas Nussbaum <lucas@debian.org>
 Bug: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=634438
+Last-Update: 2017-07-07
+
 --- a/tests/test_helper.rb
 +++ b/tests/test_helper.rb
-@@ -2,13 +2,10 @@ gem 'json', File.read('VERSION').chomp
- 
+@@ -1,12 +1,9 @@
  case ENV['JSON']
  when 'pure'
 -  $:.unshift 'lib'

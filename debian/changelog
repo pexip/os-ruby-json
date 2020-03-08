@@ -1,3 +1,36 @@
+ruby-json (2.1.0+dfsg-2) unstable; urgency=medium
+
+  * Team upload.
+  * Remove myself from Uploaders:
+  * Disable jruby support (see #890046)
+  * debian/watch: switch to https
+  * debian/rules: build under C.UTF-8 locale
+
+ -- Antonio Terceiro <terceiro@debian.org>  Sun, 25 Feb 2018 14:33:06 -0300
+
+ruby-json (2.1.0+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 2.1.0
+  * Bump standards-Version to 4.0.0
+  * Bum Debhelper compatibility to 10
+  * Add Testsuite field
+  * Refresh 0003-Remove-additional-gemspec-files.patch and
+    04-fix-tests-path.patch
+  * Drop 0005-Disable-rubygems-usage-in-tests-helper.patch, not needed anymore
+  * Use debian/gemspec introduced with gem2deb 0.35 to specify gemspec to use
+  * Mark debian/gemspec as included binary
+  * Set also JAVA_HOME in ruby-tests.rb to allow java tests to run in
+    autopkgtest environment
+
+ -- Cédric Boutillier <boutil@debian.org>  Tue, 18 Jul 2017 22:31:09 +0200
+
+ruby-json (2.0.1+dfsg-4) experimental; urgency=medium
+
+  * Team upload.
+  * Build java extension. (Closes: #857650)
+
+ -- Miguel Landaeta <nomadium@debian.org>  Fri, 17 Mar 2017 12:26:08 +0000
+
 ruby-json (2.0.1+dfsg-3pexip1) pexip; urgency=medium
 
   * Migrate to Stretch

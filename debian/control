@@ -4,15 +4,15 @@ Priority: optional
 Maintainer: Pexip AS <packaging@pexip.com>
 XSBC-Pexip-Original-Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
 XSBC-Pexip-Original-Uploaders: Lucas Nussbaum <lucas@debian.org>,
-           Antonio Terceiro <terceiro@softwarelivre.org>,
            Cédric Boutillier <boutil@debian.org>
-Build-Depends: debhelper (>= 9~),
-               gem2deb,
+Build-Depends: debhelper (>= 10~),
+               gem2deb (>= 0.35~),
                ruby-test-unit
-Standards-Version: 3.9.8
+Standards-Version: 4.0.0
 Vcs-Git: https://anonscm.debian.org/git/pkg-ruby-extras/ruby-json.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-ruby-extras/ruby-json.git
 Homepage: https://flori.github.com/json
+Testsuite: autopkgtest-pkg-ruby
 XS-Ruby-Versions: all
 XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
 
