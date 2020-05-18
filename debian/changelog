@@ -1,6 +1,7 @@
-ruby-json (2.1.0+dfsg-2pexip1) pexip; urgency=medium
+ruby-json (2.1.0+dfsg-2+b1pexip1) pexip; urgency=medium
 
   * Migrate to Buster
+  * Remove patch applied upstream: CVE-2017-14064.patch
 
  -- Vincent Sanders <vince@pexip.com>  Sun, 08 Mar 2020 13:53:09 +0000
 
