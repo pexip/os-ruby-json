@@ -2,3 +2,4 @@
 04-fix-tests-path.patch
 0003-Remove-additional-gemspec-files.patch
 0006-Disable-git-usage-during-build-time.patch
+CVE-2020-10663.patch
