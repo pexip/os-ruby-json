@@ -1,3 +1,9 @@
+ruby-json (2.1.0+dfsg-2+b1pexip2) pexip; urgency=medium
+
+  * Rebuild in buster environment
+
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Thu, 16 Jul 2020 06:39:17 +0000
+
 ruby-json (2.1.0+dfsg-2+b1pexip1) pexip; urgency=medium
 
   * Migrate to Buster
