@@ -1,3 +1,16 @@
+ruby-json (2.1.0+dfsg-2+deb10u1pexip1) pexip; urgency=medium
+
+  * New upstream release
+
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Tue, 04 Aug 2020 16:30:01 +0100
+
+ruby-json (2.1.0+dfsg-2+deb10u1) buster; urgency=high
+
+  * Add patch to fix unsafe object creation vulnerability.
+    (Fixes: CVE-2020-10663)
+
+ -- Utkarsh Gupta <utkarsh@debian.org>  Fri, 05 Jun 2020 12:13:54 +0530
+
 ruby-json (2.1.0+dfsg-2+b1pexip2) pexip; urgency=medium
 
   * Rebuild in buster environment
